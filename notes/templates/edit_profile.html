@@ -1,0 +1,98 @@
+{% extends 'usernavigation.html' %} {% load static %} {% block body %}
+<!--  -->
+
+<div class="container mt-5">
+  <h2 class="text-center">EDIT PROFILE</h2>
+  <hr />
+
+  <div class="row">
+    <div class="col-sm-6">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">FirstName</label>
+            <input
+              type="text"
+              class="form-control"
+              value="{{data.user.first_name}}"
+              name="firstname"
+            />
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="">LastName</label>
+            <input
+              type="text"
+              class="form-control"
+              value="{{data.user.last_name}}"
+              name="lastname"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="">Email ID</label>
+            <input
+              type="text"
+              class="form-control"
+              value="{{data.user.username}}"
+              name="emailid"
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="">Contact</label>
+            <input
+              type="text"
+              class="form-control"
+              value="{{data.contact}}"
+              name="contact"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Branch</label>
+            <select class="form-control" name="branch">
+              <option value="AI">AI</option>
+              <option value="Networking">Networking</option>
+              <option value="Programming">Programming</option>
+              <option value="Mathematical">Mathematical</option>
+              <option value="Digital Marketing">Digital Marketing</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6 mt-2">
+            <br />
+            <input
+              type="text"
+              value="{{data.branch}}"
+              class="form-control"
+              readonly
+            />
+          </div>
+        </div>
+
+        <!--  -->
+        <input type="submit" value="Update" class="btn btn-primary mt-3" />
+      </form>
+    </div>
+  </div>
+
+  <!--  -->
+</div>
+
+{% if error %}
+
+<script>
+  alert("Profile Updated Successfully");
+  window.location = "{% url 'profile' %}";
+</script>
+{% endif %}
+<!--  -->
+{% endblock %}

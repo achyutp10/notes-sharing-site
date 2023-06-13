@@ -1,0 +1,58 @@
+{% extends 'admin_nav.html' %} {% block body %} {% load static %}
+<!--  -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css"
+/>
+
+<script>
+  $(document).ready(function () {
+    $("#example").DataTable();
+  });
+</script>
+
+<div class="container mt-5">
+  <h2 class="text-center">ASSIGN STATUS</h2>
+  <hr />
+  <form action="" method="post">
+    {% csrf_token %}
+    <label for="">Notes ID</label>
+    <input
+      type="text"
+      name="notesid"
+      class="form-control"
+      value="{{notes.id}}"
+      readonly
+    />
+
+    <label for="">Status</label>
+    <select name="status" id="" class="form-control">
+      <option value="Accept">Accept</option>
+      <option value="Reject">Reject</option>
+    </select>
+    <br />
+    <input type="Submit" value="Sumbit" class="btn btn-primary form-control" />
+  </form>
+</div>
+<!--  -->
+
+{% if error == "no" %}
+<script>
+  alert("Status Updated Successfull");
+  window.location = "{% url 'all_notes' %}";
+</script>
+{% elif error == "yes" %}
+<script>
+  alert("Something went wrong, Try Again");
+</script>
+{% endif %}
+<!--  -->
+{% endblock %}

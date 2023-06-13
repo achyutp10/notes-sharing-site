@@ -1,0 +1,71 @@
+{% extends 'usernavigation.html' %} {% block body %} {% load static %}
+
+<div class="container mt-5">
+  <h2 class="text-center">UPLOAD NOTES HERE</h2>
+  <hr />
+  <div class="row">
+    <div class="col-sm-6">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Branch</label>
+        <select class="form-control" name="branch">
+          <option value="">---Select Branch---</option>
+          <option value="AI">AI</option>
+          <option value="Networking">Networking</option>
+          <option value="Programming">Programming</option>
+          <option value="Mathematical">Mathematical</option>
+          <option value="Digital Marketing">Digital Marketing</option>
+        </select>
+
+        <label>Subject</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Subject Name"
+          name="subject"
+        />
+        <label>Notes File</label>
+        <input type="file" class="form-control" name="notesfile" />
+        <label>File Type</label>
+        <select id="" class="form-control" name="filetype">
+          <option value="">---Select File Type---</option>
+          <option value="PDF">PDF</option>
+          <option value="PPT">PPT</option>
+          <option value="DOC">DOC/DOCS</option>
+          <option value="TXT">TXT</option>
+          <option value="IMAGE">IMAGE</option>
+          <option value="ZIP/RAR">ZIP/RAR</option>
+        </select>
+
+        <label>Description</label>
+        <textarea class="form-control" name="description" id=""> </textarea>
+
+        <input type="submit" class="btn btn-danger mt-2" value="SUBMIT" />
+      </form>
+    </div>
+
+    <div class="col-sm-6">
+      <img
+        src="{% static 'images/not.png' %}"
+        style="width: 90%; height: 400px"
+        class="mt-2"
+        alt=""
+      />
+    </div>
+    ~
+    <!--  -->
+  </div>
+</div>
+
+<!--  -->
+{% if error == "no" %}
+<script>
+  alert("Notes Uploaded Successfully");
+</script>
+{% elif error == "yes" %}
+<script>
+  alert("Something went wrong, Try Again");
+</script>
+{% endif %}
+<!--  -->
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'navigation.html' %} {% load static %} {% block body %}
+<!--  -->
+{% if error == "no" %}
+
+<script>
+  alert("Logged In Successfully");
+  window.location = "{% url 'profile' %}";
+</script>
+{% elif error == "yes" %}
+<script>
+  alert("Invalid Login Credentials, Try Again");
+</script>
+{% endif %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2 class="text-center">NEW USER</h2>
+      <hr />
+      <p>
+        First create an account with our website and be able to move through the
+        notes uploading and downloading process.
+      </p>
+      <center>
+        <a href="{% url 'signup'%}" class="btn btn-primary text-white mt-5"
+          >CREATE AN ACCOUNT</a
+        >
+      </center>
+    </div>
+    <div class="col-sm-6">
+      <h2 class="text-center">USER LOGIN</h2>
+      <hr />
+      <form method="post">
+        {% csrf_token %}
+        <label>Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Enter Email ID"
+          name="emailid"
+        />
+
+        <label>Password</label>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Enter Password"
+          name="pwd"
+        />
+        <input type="submit" class="btn btn-primary mt-2" value="LOGIN" />
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

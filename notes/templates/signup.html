@@ -1,0 +1,91 @@
+{% extends 'navigation.html' %} {% block body %} {% load static %}
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2 class="text-center">EXISTING USER</h2>
+      <hr />
+      <p>
+        First create an account with our website and be able to move through the
+        notes uploading and downloading process.
+      </p>
+      <center>
+        <a href="{% url 'login'%}" class="btn btn-primary text-white mt-5"
+          >CREATE AN ACCOUNT</a
+        >
+      </center>
+    </div>
+    <div class="col-sm-6">
+      <h2 class="text-center">REGISTER HERE</h2>
+      <hr />
+      <p>If you do not have an account then, Please Signup</p>
+      <form method="post">
+        {% csrf_token %}
+        <label>FirstName</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Your FirstName"
+          name="firstname"
+        />
+
+        <label>LastName</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Your LastName"
+          name="lastname"
+        />
+        <label>Contact</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Your Contact No"
+          name="contact"
+        />
+        <label>Email ID</label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Enter Your Email ID"
+          name="emailid"
+        />
+        <label>Password</label>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Enter Your Password"
+          name="password"
+        />
+        <label>Branch</label>
+        <select class="form-control" name="branch" id="">
+          <option value="AI">AI</option>
+          <option value="Networking">Networking</option>
+          <option value="Programming">Programming</option>
+          <option value="Mathematical">Mathematical</option>
+          <option value="Digital Marketing">Digital Marketing</option>
+        </select>
+        <label>Are You?</label>
+        <select class="form-control" name="role" id="">
+          <option value="Student">Student</option>
+          <option value="Teacher">Teacher</option>
+        </select>
+        <input type="submit" class="btn btn-primary mt-2" value="SUBMIT" />
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--  -->
+{% if error == "no" %}
+<script>
+  alert("Signup Successfull");
+  window.location = "{% url 'login' %}";
+</script>
+{% elif error == "yes" %}
+<script>
+  alert("Something went wrong, Try Again");
+</script>
+{% endif %}
+<!--  -->
+{% endblock %}
